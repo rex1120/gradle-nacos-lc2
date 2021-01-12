@@ -1,0 +1,42 @@
+plugins {
+	id 'org.springframework.boot' version '2.3.2.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+	id 'java'
+}
+
+group = 'com.lc'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+    // 使用国内的源
+    maven { url 'https://maven.aliyun.com/repository/public' }
+	mavenCentral()
+}
+
+def mybatis_plus_version = "3.1.2"
+def spring_boot_version = "2.3.2.RELEASE"
+def fast_json_version = "1.2.73"
+def lombok_version = "1.18.12"
+def mysql_version = "8.0.19"
+def alibabaCloudVersion = '2.2.3.RELEASE'
+
+dependencies {
+    compile "com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery:${alibabaCloudVersion}"
+    compile "com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config:${alibabaCloudVersion}"
+    compile "mysql:mysql-connector-java:${mysql_version}"
+    compile group: 'com.zaxxer', name: 'HikariCP', version: '3.4.1'
+    annotationProcessor "org.projectlombok:lombok:${lombok_version}"
+    compile "com.alibaba:fastjson:${fast_json_version}"
+    compileOnly "org.projectlombok:lombok:${lombok_version}"
+    compile "com.baomidou:mybatis-plus-extension:${mybatis_plus_version}"
+    compile "com.baomidou:mybatis-plus-boot-starter:${mybatis_plus_version}"
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web
+    compile "org.springframework.boot:spring-boot-starter-web:${spring_boot_version}"
+    implementation 'org.springframework.boot:spring-boot-starter'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+test {
+	useJUnitPlatform()
+}
